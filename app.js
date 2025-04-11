@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     console.log("ResQ Website geladen");
+// nigga
 
     // Funktion zum Laden der Karte
     function initMap() {
@@ -8,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
         // Hier könnte eine API wie OpenStreetMap oder Google Maps integriert werden
         mapContainer.innerHTML = "<p>Karte wird hier geladen...</p>";
+        mapContainer.style.height = "400px";
     }
 
     // Impressum/DSGVO anzeigen
