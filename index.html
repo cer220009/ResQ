@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResQ - Notfallhilfe</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="app.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="index.html" class="navbar__logo">
+                <img src="images/logo.png" alt="ResQ Logo">
+                <span>ResQ</span>
+            </a>
+            <ul class="navbar__menu">
+                <li><a href="index.html" class="navbar__link">Start</a></li>
+                <li><a href="notfalldienste.html" class="navbar__link">Notfalldienste</a></li>
+                <li><a href="erstehilfe.html" class="navbar__link">Erste Hilfe</a></li>
+                <li><a href="suchfunktion.html" class="navbar__link">Suchfunktion</a></li>
+                <li><a href="impressum.html" class="navbar__link">Impressum</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <header class="hero">
+        <h1>Willkommen bei ResQ</h1>
+        <p>Ihre Plattform für Notfallhilfe in Wien</p>
+    </header>
+    
+    <main>
+        <section class="info">
+            <h2>Finden Sie schnell Hilfe</h2>
+            <p>Krankenhäuser, Feuerwachen und Polizeistationen auf einen Blick.</p>
+        </section>
+
+        <section class="map">
+            <h2>Notfallkarte</h2>
+            <p>Hier können Sie Notfalldienste in Ihrer Nähe finden.</p>
+            <div id="mapContainer" style="height: 500px;"></div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 ResQ. Alle Rechte vorbehalten.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var map = L.map('mapContainer').setView([48.2082, 16.3738], 12);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            var locations = [
+                { lat: 48.210033, lng: 16.363449, name: "Polizeistation 1", address: "Adresse 1, Wien", hours: "24h", link: "https://goo.gl/maps/xyz" },
+                { lat: 48.220033, lng: 16.373449, name: "Krankenhaus 1", address: "Adresse 2, Wien", hours: "24h", link: "https://goo.gl/maps/xyz" },
+                { lat: 48.230033, lng: 16.383449, name: "Feuerwehr 1", address: "Adresse 3, Wien", hours: "24h", link: "https://goo.gl/maps/xyz" }
+            ];
+
+            locations.forEach(function (location) {
+                var marker = L.marker([location.lat, location.lng]).addTo(map);
+                marker.bindPopup(`<b>${location.name}</b><br>${location.address}<br>Öffnungszeiten: ${location.hours}<br><a href="${location.link}" target="_blank">Google Maps</a>`);
+            });
+        });
+    </script>
+</body>
+</html>
